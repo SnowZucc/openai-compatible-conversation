@@ -142,7 +142,6 @@ class OpenAICompatibleOptionsFlow(OptionsFlow):
                 CONF_RECOMMENDED: user_input[CONF_RECOMMENDED],
                 CONF_PROMPT: user_input[CONF_PROMPT],
                 CONF_LLM_HASS_API: user_input[CONF_LLM_HASS_API],
-                CONF_CONF_CHAT_MODEL: user_input[CONF_CHAT_MODEL],
             }
 
         schema = openai_compatible_config_option_schema(self.hass, options)
@@ -185,6 +184,11 @@ def openai_compatible_config_option_schema(
             description={"suggested_value": options.get(CONF_LLM_HASS_API)},
             default="none",
         ): SelectSelector(SelectSelectorConfig(options=hass_apis)),
+        vol.Optional(
+            CONF_CHAT_MODEL,
+            description={"suggested_value": options.get(CONF_CHAT_MODEL, RECOMMENDED_CHAT_MODEL)},
+            default=RECOMMENDED_CHAT_MODEL,
+        ): str,
         vol.Required(
             CONF_RECOMMENDED, default=options.get(CONF_RECOMMENDED, False)
         ): bool,
