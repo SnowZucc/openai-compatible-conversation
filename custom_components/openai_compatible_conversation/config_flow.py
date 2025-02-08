@@ -50,7 +50,6 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_API_KEY): str,
         vol.Required(CONF_BASE_URL, default=RECOMMENDED_BASE_URL): str,
-        vol.Required(CONF_CHAT_MODEL, default=RECOMMENDED_CHAT_MODEL): str,
     }
 )
 
